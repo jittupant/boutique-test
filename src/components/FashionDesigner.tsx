@@ -18,6 +18,23 @@ import {
   CrossPocketIcon, StraightPocketIcon, PleatsYesIcon, PleatsNoIcon,
   ZeroBackPocketsIcon, OneBackPocketIcon, TwoBackPocketsIcon
 } from '../icons/ShortsIcons';
+import { 
+  ThreeQuarterSleeveIcon, SleevelessIcon, BellSleeveIcon,
+  RoundNeckIcon, KeyholeNeckIcon, SquareNeckIcon,
+  ALineKurtiIcon, StraightKurtiIcon, AnarkaliKurtiIcon, 
+  HighLowKurtiIcon, FlaredKurtiIcon, PanelledKurtiIcon
+} from '../icons/KurtiIcons';
+import { 
+  RollUpSleeveIcon, StandardCollarIcon, MandarinCollarIcon, 
+  SpreadCollarIcon, BandCollarIcon, RegularFitIcon, SlimFitIcon, 
+  ComfortFitIcon, BoxyFitIcon
+} from '../icons/ShirtIcons';
+import { PuffSleeveIcon } from '../icons/NightGownIcons';
+import { 
+  ElasticWaistIcon, DrawstringIcon, HookZipIcon, SideZipIcon,
+  AnkleLengthIcon, FloorLengthIcon, MidCalfIcon, KneeLengthIcon,
+  CottonIcon, SatinIcon, SilkIcon, PoplinIcon
+} from '../icons/UnderSkirtIcons';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -48,6 +65,48 @@ const fashionData: FashionItem[] = [
     ]
   },
   {
+    "item_name": "Frock",
+    "areas": [
+      {
+        "area_name": "Sleeve Type",
+        "options": ["Half", "Full", "No", "Cap"]
+      },
+      {
+        "area_name": "Front Neck Design",
+        "options": [
+          "U-Neck", "V-Neck", "Boat Neck", "Basket", "Wide Square",
+          "Halter", "Collar", "Round", "Deep U", "5 Corner Neck", "Sweet Heart"
+        ]
+      }
+    ]
+  },
+  {
+    "item_name": "Kurti",
+    "areas": [
+      {
+        "area_name": "Sleeve Type",
+        "options": ["Half", "Full", "3/4th", "Sleeveless", "Cap", "Bell"]
+      },
+      {
+        "area_name": "Neck Design",
+        "options": ["Round Neck", "Boat Neck", "V-Neck", "Collar Neck", "Keyhole Neck", "Square Neck"]
+      },
+      {
+        "area_name": "Style Type",
+        "options": ["A-Line Kurti", "Straight Kurti", "Anarkali Kurti", "High-Low Kurti", "Flared Kurti", "Panelled Kurti"]
+      }
+    ]
+  },
+  {
+    "item_name": "Night Gown",
+    "areas": [
+      {
+        "area_name": "Sleeve Type",
+        "options": ["Half", "Full", "Sleeveless", "Puff", "Cap"]
+      }
+    ]
+  },
+  {
     "item_name": "Saree Blouse",
     "areas": [
       {
@@ -61,6 +120,23 @@ const fashionData: FashionItem[] = [
       {
         "area_name": "Lining",
         "options": ["Yes", "No"]
+      }
+    ]
+  },
+  {
+    "item_name": "Shirt",
+    "areas": [
+      {
+        "area_name": "Sleeve Type",
+        "options": ["Half", "Full", "3/4th", "Roll-Up"]
+      },
+      {
+        "area_name": "Collar Type",
+        "options": ["Standard Collar", "Mandarin Collar", "Spread Collar", "Band Collar"]
+      },
+      {
+        "area_name": "Fit Type",
+        "options": ["Regular Fit", "Slim Fit", "Comfort Fit", "Boxy Fit"]
       }
     ]
   },
@@ -80,6 +156,23 @@ const fashionData: FashionItem[] = [
         "options": ["0", "1", "2"]
       }
     ]
+  },
+  {
+    "item_name": "Under Skirt",
+    "areas": [
+      {
+        "area_name": "Waist Type",
+        "options": ["Elastic Waist", "Drawstring", "Hook & Zip", "Side Zip"]
+      },
+      {
+        "area_name": "Length Type",
+        "options": ["Ankle Length", "Floor Length", "Mid-Calf", "Knee Length"]
+      },
+      {
+        "area_name": "Material Type",
+        "options": ["Cotton", "Satin", "Silk", "Poplin"]
+      }
+    ]
   }
 ];
 
@@ -91,7 +184,7 @@ const FashionDesigner: React.FC = () => {
   });
 
   const getIconForOption = (areaName: string, option: string) => {
-    const iconProps = { className: "w-12 h-12" };
+    const iconProps = { className: "w-16 h-16" };
     
     // Sleeve Type Icons
     if (areaName === 'Sleeve Type') {
@@ -100,6 +193,11 @@ const FashionDesigner: React.FC = () => {
         case 'Full': return <FullSleeveIcon {...iconProps} />;
         case 'No': return <NoSleeveIcon {...iconProps} />;
         case 'Cap': return <CapSleeveIcon {...iconProps} />;
+        case '3/4th': return <ThreeQuarterSleeveIcon {...iconProps} />;
+        case 'Sleeveless': return <SleevelessIcon {...iconProps} />;
+        case 'Bell': return <BellSleeveIcon {...iconProps} />;
+        case 'Roll-Up': return <RollUpSleeveIcon {...iconProps} />;
+        case 'Puff': return <PuffSleeveIcon {...iconProps} />;
       }
     }
     
@@ -117,6 +215,30 @@ const FashionDesigner: React.FC = () => {
         case 'Deep U': return <DeepUIcon {...iconProps} />;
         case '5 Corner Neck': return <FiveCornerNeckIcon {...iconProps} />;
         case 'Sweet Heart': return <SweetHeartIcon {...iconProps} />;
+      }
+    }
+    
+    // Neck Design Icons (for Kurti)
+    if (areaName === 'Neck Design') {
+      switch (option) {
+        case 'Round Neck': return <RoundNeckIcon {...iconProps} />;
+        case 'Boat Neck': return <BoatNeckIcon {...iconProps} />;
+        case 'V-Neck': return <VNeckIcon {...iconProps} />;
+        case 'Collar Neck': return <CollarIcon {...iconProps} />;
+        case 'Keyhole Neck': return <KeyholeNeckIcon {...iconProps} />;
+        case 'Square Neck': return <SquareNeckIcon {...iconProps} />;
+      }
+    }
+    
+    // Style Type Icons (for Kurti)
+    if (areaName === 'Style Type') {
+      switch (option) {
+        case 'A-Line Kurti': return <ALineKurtiIcon {...iconProps} />;
+        case 'Straight Kurti': return <StraightKurtiIcon {...iconProps} />;
+        case 'Anarkali Kurti': return <AnarkaliKurtiIcon {...iconProps} />;
+        case 'High-Low Kurti': return <HighLowKurtiIcon {...iconProps} />;
+        case 'Flared Kurti': return <FlaredKurtiIcon {...iconProps} />;
+        case 'Panelled Kurti': return <PanelledKurtiIcon {...iconProps} />;
       }
     }
     
@@ -169,6 +291,53 @@ const FashionDesigner: React.FC = () => {
       }
     }
     
+    // Shirt Icons
+    if (areaName === 'Collar Type') {
+      switch (option) {
+        case 'Standard Collar': return <StandardCollarIcon {...iconProps} />;
+        case 'Mandarin Collar': return <MandarinCollarIcon {...iconProps} />;
+        case 'Spread Collar': return <SpreadCollarIcon {...iconProps} />;
+        case 'Band Collar': return <BandCollarIcon {...iconProps} />;
+      }
+    }
+    
+    if (areaName === 'Fit Type') {
+      switch (option) {
+        case 'Regular Fit': return <RegularFitIcon {...iconProps} />;
+        case 'Slim Fit': return <SlimFitIcon {...iconProps} />;
+        case 'Comfort Fit': return <ComfortFitIcon {...iconProps} />;
+        case 'Boxy Fit': return <BoxyFitIcon {...iconProps} />;
+      }
+    }
+    
+    // Under Skirt Icons
+    if (areaName === 'Waist Type') {
+      switch (option) {
+        case 'Elastic Waist': return <ElasticWaistIcon {...iconProps} />;
+        case 'Drawstring': return <DrawstringIcon {...iconProps} />;
+        case 'Hook & Zip': return <HookZipIcon {...iconProps} />;
+        case 'Side Zip': return <SideZipIcon {...iconProps} />;
+      }
+    }
+    
+    if (areaName === 'Length Type') {
+      switch (option) {
+        case 'Ankle Length': return <AnkleLengthIcon {...iconProps} />;
+        case 'Floor Length': return <FloorLengthIcon {...iconProps} />;
+        case 'Mid-Calf': return <MidCalfIcon {...iconProps} />;
+        case 'Knee Length': return <KneeLengthIcon {...iconProps} />;
+      }
+    }
+    
+    if (areaName === 'Material Type') {
+      switch (option) {
+        case 'Cotton': return <CottonIcon {...iconProps} />;
+        case 'Satin': return <SatinIcon {...iconProps} />;
+        case 'Silk': return <SilkIcon {...iconProps} />;
+        case 'Poplin': return <PoplinIcon {...iconProps} />;
+      }
+    }
+    
     return null;
   };
 
@@ -213,7 +382,7 @@ const FashionDesigner: React.FC = () => {
             <Title level={3} style={{ marginBottom: '16px', color: '#5d4fa2' }}>
               Select Fashion Item
             </Title>
-            <Space size="large">
+            <div className="flex flex-wrap justify-center gap-3">
               {fashionData.map(item => (
                 <Button
                   key={item.item_name}
@@ -224,13 +393,14 @@ const FashionDesigner: React.FC = () => {
                     borderRadius: '8px',
                     backgroundColor: selectedItem === item.item_name ? '#5d4fa2' : undefined,
                     borderColor: '#5d4fa2',
-                    color: selectedItem === item.item_name ? 'white' : '#5d4fa2'
+                    color: selectedItem === item.item_name ? 'white' : '#5d4fa2',
+                    minWidth: '120px'
                   }}
                 >
                   {item.item_name}
                 </Button>
               ))}
-            </Space>
+            </div>
           </div>
         </Card>
 
